@@ -43,22 +43,22 @@ include("conn.php");
 <body>
     <br><br>
     <center>
-        <h1>แก้ไขข้อมูลแมว</h1>
+        <h1>แก้ไขข้อมูลsamsung</h1>
     </center>
     <?php
     //เริ่มเก็บข้อมูล
-    $cat_id = $_POST['cat_id'];
-    $cat_name = $_POST['cat_name'];
-    $breed = $_POST['breed'];
-    $color = $_POST['color'];
-    $age = $_POST['age'];
-    $weight = $_POST['weight'];
-    $adoption_date = $_POST['adoption_date'];
+    $id = $_POST['id'];
+    $model = $_POST['model'];
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+    $release_date = $_POST['release_date'];
+    $stock = $_POST['stock'];
+    $description = $_POST['description'];
 
     //เขียนคำสั่ง SQL
 
 
-    $sql = "UPDATE cats SET cat_name='$cat_name',breed='$breed',color='$color',age='$age',weight='$weight',adoption_date='$adoption_date'  WHERE cat_id=$cat_id ";
+    $sql = "UPDATE samsung_products SET model='$model',category='$category',price='$price',release_date='$release_date',stock='$stock',description='$description'  WHERE id=$id";
 
    // รับคำสั่ง sql
    if ($conn->query($sql) === TRUE) {
@@ -73,7 +73,7 @@ include("conn.php");
    $conn->close();
    ?>
 
-    พัฒนาโดย 664485040 นางสาวพัชรภา พลายนุกูล <br>
+    พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา <br>
     </head>
 
 </html>

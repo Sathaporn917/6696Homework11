@@ -34,7 +34,7 @@ include("conn.php");
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ข้อมูลแมว</title>
+    <title>ข้อมูลsamsung</title>
 </head>
 
 <body>
@@ -43,14 +43,14 @@ include("conn.php");
     if (isset($_GET['action_even']) == 'delete') {
         //echo "Test";
 
-        $cat_id = $_GET['cat_id'];
-        $sql = "SELECT * FROM cats WHERE cat_id=$cat_id";
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM samsung_products WHERE id=$id";
         // echo $sql;
         $result = $conn->query($sql);
         // $lvsql =mysqli_query($conn,$sql);
         if ($result->num_rows > 0) {
             // sql to delete a record
-            $sql = "DELETE FROM cats WHERE cat_id=$cat_id";
+            $sql = "DELETE FROM samsung_products WHERE id=$id";
 
             if ($conn->query($sql) === TRUE) {
                 echo "<div class='alert alert-success'>ลบข้อมูลสำเร็จ</div>";
@@ -64,42 +64,42 @@ include("conn.php");
     }
     ?>
 
-    <h1>แสดงข้อมูลแมว</h1>
-    <h2>พัฒนาโดย 664485040 นางสาวพัชรภา พลายนุกูล</h2>
+    <h1>แสดงข้อมูลsamsung</h1>
+    <h2>พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา</h2>
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>รหัส</th>
-                <th>ชื่อแมว</th>
-                <th>สายพันธ์</th>
-                <th>สีแมว</th>
-                <th>อายุ</th>
-                <th>น้ำหนัก</th>
-                <th>วันที่รับเลี้ยง</th>
+                <th>โดเมล</th>
+                <th>หมวดหมู่</th>
+                <th>ราคา</th>
+                <th>วันว่างจำหน่าย</th>
+                <th>คลังสินค้า</th>
+                <th>รายละเอียด</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM cats";
+            $sql = "SELECT * FROM samsung_products";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["cat_id"] . "</td>";
-                    echo "<td>" . $row["cat_name"] . "</td>";
-                    echo "<td>" . $row["breed"] . "</td>";
-                    echo "<td>" . $row["color"] . "</td>";
-                    echo "<td>" . $row["age"] . "</td>";
-                    echo "<td>" . $row["weight"] . "</td>";
-                    echo "<td>" . $row["adoption_date"] . "</td>";
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>" . $row["model"] . "</td>";
+                    echo "<td>" . $row["category"] . "</td>";
+                    echo "<td>" . $row["price"] . "</td>";
+                    echo "<td>" . $row["release_date"] . "</td>";
+                    echo "<td>" . $row["stock"] . "</td>";
+                    echo "<td>" . $row["description"] . "</td>";
 
-                    echo '<td><a type="button" href="show.php?action_even=del&cat_id=' . $row['cat_id'] . '" title="ลบข้อมูล" onclick="return confirm(\'ต้องการจะลบข้อมูลรายชื่อ ' . $row['cat_id'] . ' ' . $row['cat_name'] . ' ' . $row['breed'] . '?\')" class="btn btn-danger btn-sm"> ลบข้อมูล </a>  
+                    echo '<td><a type="button" href="show.php?action_even=del&id=' . $row['id'] . '" title="ลบข้อมูล" onclick="return confirm(\'ต้องการจะลบข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['model'] . ' ' . $row['category'] . '?\')" class="btn btn-danger btn-sm"> ลบข้อมูล </a>  
                     
-                    <a type="button" href="edit.php?action_even=edit&cat_id=' . $row['cat_id'] . '" 
-                title="แก้ไขข้อมูล" onclick="return confirm(\'ต้องการจะแก้ไขข้อมูลรายชื่อ ' . $row['cat_id'] . ' ' . $row['cat_name'] . ' ' . $row['breed'] . '?\')" class="btn btn-primary btn-sm"> แก้ไขข้อมูล </a> </td>';
+                    <a type="button" href="edit.php?action_even=edit&id=' . $row['id'] . '" 
+                title="แก้ไขข้อมูล" onclick="return confirm(\'ต้องการจะแก้ไขข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['model'] . ' ' . $row['category'] . '?\')" class="btn btn-primary btn-sm"> แก้ไขข้อมูล </a> </td>';
 
                     echo "</tr>";
                 }

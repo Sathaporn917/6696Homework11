@@ -36,13 +36,13 @@ include("conn.php");
     </style>
     
 
-    <title>เเก้ไขข้อมูลแมว</title>
+    <title>เเก้ไขข้อมูลsamsung</title>
 </head>
 
 <?php
 if(isset($_GET['action_even'])=='edit'){
-    $cat_id=$_GET['cat_id'];
-    $sql="SELECT * FROM cats WHERE cat_id=$cat_id";
+    $id=$_GET['id'];
+    $sql="SELECT * FROM samsung_products WHERE id=$id";
     $result=$conn->query($sql);
     if($result->num_rows>0){
         $row=$result->fetch_assoc();
@@ -52,67 +52,69 @@ if(isset($_GET['action_even'])=='edit'){
     //$conn->close();
 }
 ?>
-<h1>แก้ไขข้อมูลแมว</h1>
+<h1>แก้ไขข้อมูลsamsung</h1>
 
 
 <form action="edit_1.php" method="POST">
-    <input type="hidden"name="cat_id" value="<?php echo$row['cat_id']; ?>">
+    <input type="hidden"name="id" value="<?php echo$row['id']; ?>">
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> รหัสแมว </label>
+        <label class="col-sm-1 col-form-label"> รหัส </label>
         <div class="col-sm-2">
-        <label class="col-sm-1 col-form-label"><?php echo$row['cat_id']; ?></label>
+        <label class="col-sm-1 col-form-label"><?php echo$row['id']; ?></label>
         </div>
     </div>
    
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> ชื่อแมว </label>
+        <label class="col-sm-1 col-form-label"> โมเดล </label>
         <div class="col-sm-2">
-        <input type="text" name="cat_name" class="form-control" maxlength="50" value=<?php echo$row['cat_name']; ?> required>
+        <input type="text" name="model" class="form-control" maxlength="50" value=<?php echo$row['model']; ?> required>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> สายพันธ์ </label>
+        <label class="col-sm-1 col-form-label"> หมวดหมู่ </label>
         <div class="col-sm-2">
-            <input type="text" name="breed" class="form-control" maxlength="50" value=<?php echo$row['breed']; ?> required>
+        <select class="form-select" name="category" aria-label="Default select example">
+                <option >กรุณาระบุหมวดหมู่</option>
+                <option value="สมาร์ทวอทช์" <?php if ($row['category']=='แล็ปท็อป'){ echo "selected";} ?>>แล็ปท็อป</option>
+                <option value="สมาร์ทโฟน" <?php if ($row['category']=='สมาร์ทโฟน'){ echo "selected";} ?>>สมาร์ทโฟน</option>
+                <option value="สมาร์ทโฟนกันกระแทก"<?php if ($row['category']=='สมาร์ทโฟนกันกระแทก'){ echo "selected";} ?>>สมาร์ทโฟนกันกระแทก</option>
+                <option value="สมาร์ทโฟนพับได้"<?php if ($row['category']=='สมาร์ทโฟนพับได้'){ echo "selected";} ?>>สมาร์ทโฟนพับได้</option>
+                <option value="หูฟังไร้สาย"<?php if ($row['category']=='หูฟังไร้สาย'){ echo "selected";} ?>>หูฟังไร้สาย</option>
+                <option value="แท็บเล็ต"<?php if ($row['category']=='แท็บเล็ต'){ echo "selected";} ?>>แท็บเล็ต</option>
+                <option value="แล็ปท็อป"<?php if ($row['category']=='แล็ปท็อป'){ echo "selected";} ?>>แล็ปท็อป</option>
+
+            </select>
         </div>
     </div>
 
     
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> สีแมว </label>
+        <label class="col-sm-1 col-form-label"> ราคา </label>
         <div class="col-sm-2">
-        <select name="color" class="form-select" aria-label="Default select example">
-        <option selected>กรุณาระบุสี</option>
-        <option value="ขาว"<?php if ($row['color']=='ขาว'){ echo "selected";} ?>>ขาว</option>
-        <option value="ดำ"<?php if ($row['color']=='ดำ'){ echo "selected";} ?>>ดำ</option>
-        <option value="ส้ม"<?php if ($row['color']=='ส้ม'){ echo "selected";} ?>>ส้ม</option>
-        <option value="เทา"<?php if ($row['color']=='เทา'){ echo "selected";} ?>>เทา</option>
-        <option value="น้ำตาล"<?php if ($row['color']=='น้ำตาล'){ echo "selected";} ?>>น้ำตาล</option>
-        <option value="อื่นๆ"<?php if ($row['color']=='อื่นๆ'){ echo "selected";} ?>>อื่นๆ</option>
-        </select>
+        <input type="text" name="price" class="form-control" maxlength="50" value=<?php echo$row['price']; ?> required>
         </div>
     </div>
 
 
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> อายุ </label>
+        <label class="col-sm-1 col-form-label"> วันว่างจำหน่าย </label>
         <div class="col-sm-2">
-            <input type="text" name="age" class="form-control" maxlength="50" value=<?php echo$row['age']; ?> required>
+            <input type="text" name="release_date" class="form-control" maxlength="50" value=<?php echo$row['release_date']; ?> required>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> น้ำหนัก</label>
+        <label class="col-sm-1 col-form-label"> คลังสินค้า </label>
         <div class="col-sm-2">
-            <input type="text" name="weight" class="form-control" maxlength="50" value=<?php echo$row['weight']; ?> required>
+            <input type="text" name="stock" class="form-control" maxlength="50" value=<?php echo$row['stock']; ?> required>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> วันที่รับเลี้ยง</label>
+        <label class="col-sm-1 col-form-label"> รายละเอียด </label>
         <div class="col-sm-2">
-            <input type="text" name="adoption_date" class="form-control" maxlength="50" value=<?php echo$row['adoption_date']; ?> required>
+            <input type="text" name="description" class="form-control" maxlength="50" value=<?php echo$row['description']; ?> required>
         </div>
     </div>
     </div>
@@ -120,7 +122,7 @@ if(isset($_GET['action_even'])=='edit'){
     <button type="reset" class="btn btn-danger"> ยกเลิก</button>
  
 </form>
-<br> พัฒนาโดย 664485040 นางสาวพัชรภา พลายนุกูล <br>
+<br> พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา <br>
 </head>
 
 </html>
